@@ -1,10 +1,8 @@
-// app/api/dashboard/chart-data/route.ts
 import { NextResponse } from "next/server"
 import { Database } from "@/lib/database"
 import { format } from "date-fns"
 import { es } from "date-fns/locale"
 
-// Normaliza a YYYY-MM-DD en hora local para evitar desfases con UTC
 function toLocalDateKey(d: Date) {
   const tz = d.getTimezoneOffset() * 60000
   return new Date(d.getTime() - tz).toISOString().slice(0, 10)
@@ -20,7 +18,6 @@ export async function GET() {
 
       const dayKey = toLocalDateKey(day)
 
-      // Si tu DB expone getPaymentsByDate, úsalo; si no, fall-back a filtrar todos
       let dayPayments = await Promise.resolve(
         (Database as any).getPaymentsByDate
           ? (Database as any).getPaymentsByDate(dayKey)
@@ -29,7 +26,6 @@ export async function GET() {
             )
       )
 
-      // Seguridad por si el método retorna algo raro
       if (!Array.isArray(dayPayments)) dayPayments = []
 
       const totalAmount = dayPayments.reduce(

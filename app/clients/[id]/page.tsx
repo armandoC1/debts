@@ -29,7 +29,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-// ⛔️ Quitado: import { Database } from "@/lib/database";
 import type { Client, Debt, Payment } from "@/lib/types";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
@@ -92,7 +91,6 @@ export default function ClientDetailPage() {
         setDebts(dJson?.data ?? []);
         setPayments(pJson?.data ?? []);
 
-        // Generate chart data for the last 30 days
         const last30Days: any[] = [];
         const clientDebts: Debt[] = dJson?.data ?? [];
         const clientPayments: Payment[] = pJson?.data ?? [];

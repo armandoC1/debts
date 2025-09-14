@@ -88,11 +88,6 @@ export default function LoginPage() {
               )}
             </Button>
           </form>
-          <div className="mt-6 p-4 bg-muted rounded-lg">
-            <p className="text-sm text-muted-foreground mb-2">Credenciales de prueba:</p>
-            <p className="text-xs font-mono">Email: admin@debttracker.com</p>
-            <p className="text-xs font-mono">Contraseña: admin123</p>
-          </div>
         </CardContent>
       </Card>
     </div>

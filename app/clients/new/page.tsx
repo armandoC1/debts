@@ -43,7 +43,6 @@ export default function NewClientPage() {
           name: formData.name.trim(),
           phone: formData.phone.trim() || null,
           email: formData.email.trim() || null,
-          // si luego agregas address al form, inclúyelo aquí
         }),
       })
 

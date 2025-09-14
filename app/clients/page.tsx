@@ -35,19 +35,18 @@ import {
   DollarSign,
 } from "lucide-react";
 
-// 👇 tu spinner
 import { Spinner } from "@/components/ui/spinner";
 
 export default function ClientsPage() {
   const [clients, setClients] = useState<Client[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredClients, setFilteredClients] = useState<Client[]>([]);
-  const [loading, setLoading] = useState(true); // 👈 estado de carga
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        setLoading(true); // 👈 inicia carga
+        setLoading(true); 
         const res = await fetch("/api/clients", { cache: "no-store" });
         const json = await res.json();
         const allClients = json?.data ?? [];
@@ -58,7 +57,7 @@ export default function ClientsPage() {
         setClients([]);
         setFilteredClients([]);
       } finally {
-        setLoading(false); // 👈 termina carga
+        setLoading(false); 
       }
     };
     fetchClients();

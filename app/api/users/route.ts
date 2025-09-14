@@ -28,7 +28,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "VALIDATION_ERROR" }, { status: 400 })
     }
 
-    // opcional: verificar duplicado aquí también
     const exists = await Database.getUserByEmail(email)
     if (exists) {
       return NextResponse.json({ ok: false, error: "EMAIL_EXISTS" }, { status: 409 })

@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server"
 import { Database } from "@/lib/database"
 
-// (opcional) fuerza runtime Node (si usas funciones que requieren Node APIs)
 export const runtime = "nodejs"
 
 export async function GET() {
   try {
     const clients = await Database.getClients()
-    // Evita caché del lado del navegador y edge
     return NextResponse.json({ ok: true, data: clients }, {
       headers: { "Cache-Control": "no-store" },
     })
@@ -44,8 +42,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, data: newClient }, { status: 201 })
   } catch (err) {
     console.error("POST /api/clients", err)
-    // Si el body no es JSON válido, cae aquí. Puedes distinguirlo si quieres:
-    // if (err instanceof SyntaxError) ...
     return NextResponse.json({ ok: false, error: "DB_ERROR" }, { status: 500 })
   }
 }

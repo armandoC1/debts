@@ -1,25 +1,20 @@
-// app/api/payments/route.ts
 import { NextResponse } from "next/server"
 import { Database } from "@/lib/database"
 
 export const dynamic = "force-dynamic"
 
-// GET /api/payments
-// GET /api/payments?clientId=xxx&limit=10
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url)
     const clientId = url.searchParams.get("clientId") || undefined
     const limit = Number(url.searchParams.get("limit")) || 0
 
-    // Si tienes getPaymentsByClientId úsalo, si no, filtra luego:
     const base = clientId
-      ? (await (Database as any).getPaymentsByClientId?.(clientId)) // opcional
+      ? (await (Database as any).getPaymentsByClientId?.(clientId)) 
       : await Database.getPayments()
 
     const list: any[] = Array.isArray(base) ? [...base] : []
 
-    // Orden reciente primero
     list.sort(
       (a, b) =>
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
@@ -37,7 +32,6 @@ export async function GET(req: Request) {
   }
 }
 
-// POST /api/payments
 export async function POST(req: Request) {
   try {
     const body = (await req.json().catch(() => null)) as
@@ -58,7 +52,6 @@ export async function POST(req: Request) {
     const rawAmount = body.amount
     const receivedBy = body.receivedBy?.toString()
 
-    // Normalizamos: si viene notes, lo guardamos como description
     const description =
       (body.notes ?? body.description)?.toString().trim() || undefined
 
@@ -82,13 +75,11 @@ export async function POST(req: Request) {
       )
     }
 
-    // MUY IMPORTANTE: usa las claves que espera tu DB.
-    // Si Database.createPayment espera 'description', NO mandes 'notes'
     const saved = await Database.createPayment({
       clientId,
       amount,
       receivedBy,
-      description, // <-- aquí, no 'des' ni 'notes'
+      description, 
     })
 
     return NextResponse.json(

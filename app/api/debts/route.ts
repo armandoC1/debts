@@ -1,11 +1,8 @@
-// app/api/debts/route.ts
 import { NextResponse } from "next/server"
 import { Database } from "@/lib/database"
 
-export const runtime = "nodejs" // (opcional) fuerza runtime Node
+export const runtime = "nodejs" 
 
-// GET /api/debts
-// GET /api/debts?clientId=abc123
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url)
@@ -13,7 +10,7 @@ export async function GET(req: Request) {
 
     const rows = clientId
       ? await Database.getDebtsByClientId(clientId)
-      : await Database.getDebts?.() ?? [] // si tienes un getDebts() global; si no, deja sólo la rama con clientId
+      : await Database.getDebts?.() ?? [] 
 
     return NextResponse.json(
       { ok: true, data: rows },
@@ -25,7 +22,6 @@ export async function GET(req: Request) {
   }
 }
 
-// POST /api/debts
 export async function POST(req: Request) {
   try {
     const body = await req.json()
@@ -35,7 +31,6 @@ export async function POST(req: Request) {
     const title = (body?.title ?? "Deuda").toString().trim()
     const description = body?.description?.toString().trim() || undefined
 
-    // Validaciones
     if (!clientId || !createdBy) {
       return NextResponse.json(
         { ok: false, error: "MISSING_FIELDS", fields: ["clientId", "createdBy"] },
@@ -55,7 +50,7 @@ export async function POST(req: Request) {
       clientId,
       title,
       amount,
-      description, // tu DB puede guardar null/undefined según implementación
+      description, 
       createdBy,
     })
 

@@ -1,10 +1,8 @@
-// app/api/dashboard/debt-distribution/route.ts
 import { NextResponse } from "next/server"
 import { Database } from "@/lib/database"
 
 export async function GET() {
   try {
-    // Aseguramos que siempre resolvemos la promesa (sin importar si es sync/async)
     let clients = await Promise.resolve(Database.getClients())
     if (!Array.isArray(clients)) clients = []
 

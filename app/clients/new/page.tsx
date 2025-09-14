@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { ArrowLeft, UserPlus } from "lucide-react"
 import Link from "next/link"
+import { Spinner } from "@/components/ui/spinner";
 
 export default function NewClientPage() {
   const router = useRouter()
@@ -36,6 +37,7 @@ export default function NewClientPage() {
     }
 
     try {
+      setIsLoading(true); 
       const res = await fetch("/api/clients", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

@@ -13,6 +13,9 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 
+/**
+ * Componente base Command (cmdk)
+ */
 function Command({
   className,
   ...props
@@ -29,12 +32,17 @@ function Command({
   )
 }
 
+/**
+ * CommandDialog: ENVOLTORIO DEL DIALOG
+ * - Se eliminó el prop inválido `showCloseButton` en <DialogContent />
+ * - Mantenemos el prop en la firma para no romper imports, pero no se usa.
+ */
 function CommandDialog({
   title = 'Command Palette',
   description = 'Search for a command to run...',
   children,
   className,
-  showCloseButton = true,
+  showCloseButton = true, // ← lo dejamos por compatibilidad, pero no se usa aquí
   ...props
 }: React.ComponentProps<typeof Dialog> & {
   title?: string
@@ -44,14 +52,14 @@ function CommandDialog({
 }) {
   return (
     <Dialog {...props}>
+      {/* Header "sr-only" para accesibilidad */}
       <DialogHeader className="sr-only">
         <DialogTitle>{title}</DialogTitle>
         <DialogDescription>{description}</DialogDescription>
       </DialogHeader>
-      <DialogContent
-        className={cn('overflow-hidden p-0', className)}
-        showCloseButton={showCloseButton}
-      >
+
+      {/* ❌ No pasar showCloseButton a DialogContent (no existe ese prop) */}
+      <DialogContent className={cn('overflow-hidden p-0', className)}>
         <Command className="[&_[cmdk-group-heading]]:text-muted-foreground **:data-[slot=command-input-wrapper]:h-12 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group]]:px-2 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
           {children}
         </Command>
@@ -60,6 +68,9 @@ function CommandDialog({
   )
 }
 
+/**
+ * Input
+ */
 function CommandInput({
   className,
   ...props
@@ -82,6 +93,9 @@ function CommandInput({
   )
 }
 
+/**
+ * List
+ */
 function CommandList({
   className,
   ...props
@@ -98,6 +112,9 @@ function CommandList({
   )
 }
 
+/**
+ * Empty
+ */
 function CommandEmpty({
   ...props
 }: React.ComponentProps<typeof CommandPrimitive.Empty>) {
@@ -110,6 +127,9 @@ function CommandEmpty({
   )
 }
 
+/**
+ * Group
+ */
 function CommandGroup({
   className,
   ...props
@@ -126,6 +146,9 @@ function CommandGroup({
   )
 }
 
+/**
+ * Separator
+ */
 function CommandSeparator({
   className,
   ...props
@@ -139,6 +162,9 @@ function CommandSeparator({
   )
 }
 
+/**
+ * Item
+ */
 function CommandItem({
   className,
   ...props
@@ -155,6 +181,9 @@ function CommandItem({
   )
 }
 
+/**
+ * Shortcut (kbd)
+ */
 function CommandShortcut({
   className,
   ...props

@@ -4,9 +4,9 @@ import type { User, Client, Debt, Payment } from "./types";
 // Conexión a la base de datos
 const createConnection = async () => {
   return await mysql.createConnection({
-    host: process.env.DB_HOST ,
+    host: process.env.DB_HOST || "192.168.1.50",
     user: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD ,
+    password: process.env.DB_PASSWORD || "user123$",
     database: process.env.DB_NAME || "debt_tracker",
     decimalNumbers: true,
   });

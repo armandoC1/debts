@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "clientId": "1",
+    "title": "Compra de productos",
+    "amount": 1000,
+    "createdAt": "2024-01-15T10:30:00.000Z",
+    "createdBy": "1",
+    "isPaid": false
+  },
+  {
+    "id": "2",
+    "clientId": "1",
+    "title": "Servicio adicional",
+    "amount": 500,
+    "createdAt": "2024-01-16T09:00:00.000Z",
+    "createdBy": "1",
+    "isPaid": false
+  },
+  {
+    "id": "3",
+    "clientId": "2",
+    "title": "Deuda",
+    "amount": 800,
+    "createdAt": "2024-01-20T14:15:00.000Z",
+    "createdBy": "1",
+    "isPaid": false
+  }
+]

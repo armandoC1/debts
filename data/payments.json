@@ -1,0 +1,19 @@
+[
+  {
+    "id": "1",
+    "clientId": "1",
+    "debtId": "1",
+    "amount": 300,
+    "receivedBy": "1",
+    "createdAt": "2024-01-17T11:00:00.000Z",
+    "notes": "Pago parcial"
+  },
+  {
+    "id": "2",
+    "clientId": "2",
+    "amount": 200,
+    "receivedBy": "1",
+    "createdAt": "2024-01-21T16:30:00.000Z",
+    "notes": "Abono a cuenta"
+  }
+]

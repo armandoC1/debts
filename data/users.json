@@ -1,0 +1,12 @@
+[
+  {
+    "id": "1",
+    "name": "Admin Principal",
+    "phone": "1234567890",
+    "email": "admin@debttracker.com",
+    "password": "admin123",
+    "roles": ["superadmin"],
+    "createdAt": "2024-01-01T00:00:00.000Z",
+    "updatedAt": "2024-01-01T00:00:00.000Z"
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "id": "1",
+    "name": "Juan Pérez",
+    "phone": "9876543210",
+    "email": "juan@email.com",
+    "totalDebt": 1500,
+    "createdAt": "2024-01-15T10:30:00.000Z",
+    "updatedAt": "2024-01-15T10:30:00.000Z"
+  },
+  {
+    "id": "2",
+    "name": "María García",
+    "phone": "5555555555",
+    "totalDebt": 800,
+    "createdAt": "2024-01-20T14:15:00.000Z",
+    "updatedAt": "2024-01-20T14:15:00.000Z"
+  }
+]
